@@ -59,6 +59,46 @@ dependencies = [
 ]
 
 [[package]]
+name = "abc357a"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
+name = "abc357b"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
+name = "abc357c"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
+name = "abc357d"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
+name = "abc357e"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
 name = "cli_test_dir"
 version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
