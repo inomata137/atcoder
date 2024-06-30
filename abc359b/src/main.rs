@@ -1,0 +1,29 @@
+use std::fmt::Display;
+use marker::Usize1;
+use proconio::*;
+
+fn main() {
+    input! {
+        n: usize,
+        a: [Usize1; 2 * n]
+    };
+    let mut ans = 0;
+    for i in 2..(2 * n) {
+        if a[i - 2] == a[i] {
+            ans += 1;
+        }
+    }
+    println!("{}", ans)
+}
+
+#[allow(unused)]
+fn print_vec<T: Display>(v: &Vec<T>) {
+    if v.len() == 0 {
+        return;
+    }
+    print!("{}", v[0]);
+    for e in &v[1..] {
+        print!(" {}", e);
+    }
+    println!();
+}
