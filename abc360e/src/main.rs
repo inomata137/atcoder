@@ -7,23 +7,34 @@ fn main() {
         n: i128,
         k: usize
     };
-    let mut ans = Mod::new(n - 2) / Mod::new(n);
+    let mut ans = Mod::new(n - 2) / n;
     ans = ans.pow(k);
-    ans = ans * Mod::new(n - 1);
-    ans = Mod::new(n + 1) - ans;
-    ans = ans / Mod::new(2);
-    println!("{}", ans.inner);
+    ans *= 1 - n;
+    ans += n + 1;
+    ans /= 2;
+    println!("{}", ans.get());
 }
 
 mod mod998244353 {
-    use std::ops::{Add, Div, Mul, Sub};
+    use std::ops::*;
     use std::collections::VecDeque;
+    use std::mem;
 
     const MOD: i128 = 998244353;
 
     #[derive(Clone, Copy, Debug)]
     pub struct Mod {
-        pub inner: i128
+        inner: i128
+    }
+
+    impl Neg for Mod {
+        type Output = Self;
+
+        fn neg(self) -> Self {
+            Mod {
+                inner: (MOD - self.inner) % MOD
+            }
+        }
     }
 
     impl Add for Mod {
@@ -33,6 +44,28 @@ mod mod998244353 {
             Mod {
                 inner: (self.inner + rhs.inner) % MOD
             }
+        }
+    }
+
+    impl AddAssign for Mod {
+        fn add_assign(&mut self, rhs: Self) {
+            *self = *self + rhs;
+        }
+    }
+
+    impl Add<i128> for Mod {
+        type Output = Self;
+
+        fn add(self, rhs: i128) -> Self {
+            Mod {
+                inner: (self.inner + (rhs % MOD)) % MOD
+            }
+        }
+    }
+
+    impl AddAssign<i128> for Mod {
+        fn add_assign(&mut self, rhs: i128) {
+            *self = *self + rhs;
         }
     }
 
@@ -46,6 +79,28 @@ mod mod998244353 {
         }
     }
 
+    impl SubAssign for Mod {
+        fn sub_assign(&mut self, rhs: Self) {
+            *self = *self - rhs;
+        }
+    }
+
+    impl Sub<i128> for Mod {
+        type Output = Self;
+
+        fn sub(self, rhs: i128) -> Self {
+            Mod {
+                inner: (self.inner + MOD - (rhs % MOD)) % MOD
+            }
+        }
+    }
+
+    impl SubAssign<i128> for Mod {
+        fn sub_assign(&mut self, rhs: i128) {
+            *self = *self - rhs;
+        }
+    }
+
     impl Mul for Mod {
         type Output = Self;
 
@@ -56,6 +111,28 @@ mod mod998244353 {
         }
     }
 
+    impl MulAssign for Mod {
+        fn mul_assign(&mut self, rhs: Self) {
+            *self = *self * rhs;
+        }
+    }
+
+    impl Mul<i128> for Mod {
+        type Output = Self;
+
+        fn mul(self, rhs: i128) -> Self {
+            Mod {
+                inner: (self.inner * (rhs % MOD)) % MOD
+            }
+        }
+    }
+
+    impl MulAssign<i128> for Mod {
+        fn mul_assign(&mut self, rhs: i128) {
+            *self = *self * rhs;
+        }
+    }
+
     impl Div for Mod {
         type Output = Self;
 
@@ -63,6 +140,28 @@ mod mod998244353 {
             self * Mod {
                 inner: moddiv(rhs.inner)
             }
+        }
+    }
+
+    impl DivAssign for Mod {
+        fn div_assign(&mut self, rhs: Self) {
+            *self = *self / rhs;
+        }
+    }
+
+    impl Div<i128> for Mod {
+        type Output = Self;
+
+        fn div(self, rhs: i128) -> Self {
+            self * Mod {
+                inner: moddiv(rhs)
+            }
+        }
+    }
+
+    impl DivAssign<i128> for Mod {
+        fn div_assign(&mut self, rhs: i128) {
+            *self = *self / rhs;
         }
     }
 
@@ -87,6 +186,9 @@ mod mod998244353 {
             }
             res
         }
+        pub fn get(&self) -> i128 {
+            (self.inner + MOD) % MOD
+        }
     }
 
     fn moddiv(mut a: i128) -> i128 {
@@ -97,8 +199,8 @@ mod mod998244353 {
             let t = a / b;
             a -= t * b;
             u -= t * v;
-            std::mem::swap(&mut a, &mut b);
-            std::mem::swap(&mut u, &mut v);
+            mem::swap(&mut a, &mut b);
+            mem::swap(&mut u, &mut v);
         }
         u %= MOD;
         if u < 0 {
