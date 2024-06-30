@@ -4,10 +4,15 @@ use mod998244353::Mod;
 
 fn main() {
     input! {
-        a: usize
+        n: i128,
+        k: usize
     };
-    let msg = if a % 2 == 0 { "Even" } else { "Odd" };
-    println!("{msg}");
+    let mut ans = Mod::new(n - 2) / Mod::new(n);
+    ans = ans.pow(k);
+    ans = ans * Mod::new(n - 1);
+    ans = Mod::new(n + 1) - ans;
+    ans = ans / Mod::new(2);
+    println!("{}", ans.inner);
 }
 
 mod mod998244353 {
