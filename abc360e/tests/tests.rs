@@ -20,27 +20,27 @@ use crate::test;
 #[test]
 fn sample1() {
 test(
-r#"12
+r#"2 1
 "#,
-r#"Even
+r#"499122178
 "#);
 }
 
 #[test]
 fn sample2() {
 test(
-r#"123
+r#"3 2
 "#,
-r#"Odd
+r#"554580198
 "#);
 }
 
 #[test]
 fn sample3() {
 test(
-r#"0
+r#"4 4
 "#,
-r#"Even
+r#"592707587
 "#);
 }
 }
