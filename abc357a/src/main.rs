@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 fn main() {
     input! {
@@ -7,9 +7,9 @@ fn main() {
         mut m: usize,
         h: [usize; n]
     };
-    for i in 0..n {
-        if m >= h[i] {
-            m -= h[i];
+    for (i, h) in h.iter().enumerate().take(n) {
+        if m >= *h {
+            m -= h;
         } else {
             println!("{}", i);
             return;
@@ -20,7 +20,7 @@ fn main() {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

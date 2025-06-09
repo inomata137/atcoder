@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 const O: char = 'o';
 
@@ -11,18 +11,18 @@ fn main() {
     let mut xarr = vec![0usize; n];
     let mut yarr = vec![0usize; n];
     let mut ans = 0usize;
-    for i in 0..n {
-        for j in 0..n {
+    for (i, x) in xarr.iter_mut().enumerate() {
+        for (j, y) in yarr.iter_mut().enumerate() {
             if s[i][j] == O {
-                xarr[i] += 1;
-                yarr[j] += 1;
+                *x += 1;
+                *y += 1;
             }
         }
     }
-    for i in 0..n {
-        for j in 0..n {
+    for (i, x) in xarr.iter().enumerate() {
+        for (j, y) in yarr.iter().enumerate() {
             if s[i][j] == O {
-                ans += (xarr[i] - 1) * (yarr[j] - 1)
+                ans += (x - 1) * (y - 1)
             }
         }
     }
@@ -31,7 +31,7 @@ fn main() {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

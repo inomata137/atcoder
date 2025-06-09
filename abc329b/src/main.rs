@@ -1,6 +1,6 @@
-use std::fmt::Display;
-use std::collections::BTreeSet;
 use proconio::*;
+use std::collections::BTreeSet;
+use std::fmt::Display;
 
 fn main() {
     input! {
@@ -16,8 +16,8 @@ fn main() {
 }
 
 #[allow(unused)]
-fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+fn print_vec<T: Display>(v: &[T]) {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

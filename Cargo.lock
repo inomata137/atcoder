@@ -59,6 +59,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "abc333c"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
 name = "abc357a"
 version = "0.1.0"
 dependencies = [
@@ -149,3 +157,19 @@ name = "proconio"
 version = "0.4.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0eb404616795079e2390e7115acf0ada24e9332e8476de2aada7bacb9992dc9e"
+
+[[package]]
+name = "typ90_subseq"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]
+
+[[package]]
+name = "typ90_yokan"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio",
+]

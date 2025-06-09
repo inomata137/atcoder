@@ -1,16 +1,57 @@
-use mod998244353::Mod;
+use marker::Chars;
 use proconio::*;
 use std::fmt::Display;
 
 fn main() {
     input! {
-        n: u128,
-        k: usize
+        _: usize,
+        k: usize,
+        s: Chars,
     };
-    let mut ans = Mod::new(n - 2) / n;
-    ans = n + 1 - ans.pow(k) * (n - 1);
-    ans /= 2;
-    println!("{}", ans.get());
+
+    println!("{}", dp(k, &s).pop().unwrap().unwrap());
+}
+
+fn dp(k_max: usize, s: &[char]) -> Vec<Option<String>> {
+    if s.is_empty() {
+        return vec![None; k_max];
+    }
+
+    let prev = dp(k_max, &s[1..]);
+    let mut res = Vec::with_capacity(k_max);
+
+    let c = s[0].to_string();
+    res.push(Some(prev[0].clone().unwrap_or(c.clone()).min(c.clone())));
+    for k in 1..k_max {
+        match (&prev[k - 1], &prev[k]) {
+            (None, None) => {
+                res.push(None);
+            }
+            (Some(s1), None) => res.push(Some(c.clone() + s1)),
+            (Some(s1), Some(s2)) => res.push(Some(s2.clone().min(c.clone() + s1))),
+            _ => unreachable!(),
+        }
+    }
+
+    res
+}
+
+#[allow(unused)]
+fn binary_search<F>(mut left: usize, mut right: usize, predicate: F) -> usize
+where
+    F: Fn(usize) -> bool,
+{
+    debug_assert!(predicate(left));
+    debug_assert!(!predicate(right));
+    while right - left > 1 {
+        let m = (left + right) / 2;
+        if predicate(m) {
+            left = m;
+        } else {
+            right = m;
+        }
+    }
+    left
 }
 
 mod mod998244353 {

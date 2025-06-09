@@ -12,7 +12,7 @@ struct State {
 
 impl State {
     fn merge(&mut self, ne: E) {
-        if self.v.len() == 0 {
+        if self.v.is_empty() {
             self.v.push_back((0, ne.1, ne.2));
             self.area = ne.1 * ne.2;
             return;
@@ -48,8 +48,8 @@ fn main() {
         v: VecDeque::new(),
         area: h[0],
     };
-    for i in 0..n {
-        state.merge((i, i + 1, h[i]));
+    for (i, h) in h.iter().enumerate().take(n) {
+        state.merge((i, i + 1, *h));
         if i > 0 {
             print!(" ")
         }
@@ -60,7 +60,7 @@ fn main() {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

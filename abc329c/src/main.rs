@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 fn main() {
     input! {
@@ -9,12 +9,12 @@ fn main() {
     let mut v = vec![0usize; 26];
     let mut left = 0;
     let mut prev = s[0];
-    for right in 0..n {
-        if s[right] != prev {
+    for (right, el) in s.iter().enumerate().take(n) {
+        if *el != prev {
             let idx = char2idx(prev);
             v[idx] = v[idx].max(right - left);
             left = right;
-            prev = s[right];
+            prev = *el;
         }
     }
     let idx = char2idx(prev);
@@ -30,7 +30,7 @@ fn char2idx(c: char) -> usize {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

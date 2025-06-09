@@ -1,9 +1,9 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 fn calc(x: usize, y: usize, level: u32) -> char {
     if level == 0 {
-        return '#'
+        return '#';
     }
     let block = 3usize.pow(level - 1);
     if x >= block && x < 2 * block && y >= block && y < 2 * block {
@@ -26,7 +26,7 @@ fn main() {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

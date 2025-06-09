@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 fn main() {
     input! {
@@ -14,7 +14,6 @@ fn main() {
         }
         ans = ans.min(res);
         x -= 1.0;
-
     }
     println!("{}", ans as usize)
 }
@@ -34,7 +33,7 @@ fn nearest_root(n: f64) -> (f64, f64) {
 
 #[allow(unused)]
 fn print_vec<T: Display>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     print!("{}", v[0]);

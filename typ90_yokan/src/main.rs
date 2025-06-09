@@ -1,20 +1,51 @@
-use mod998244353::Mod;
 use proconio::*;
 use std::fmt::Display;
 
 fn main() {
     input! {
-        n: u128,
-        k: usize
+        n: usize,
+        l: usize,
+        k: usize,
+        a: [usize; n]
     };
-    let mut ans = Mod::new(n - 2) / n;
-    ans = n + 1 - ans.pow(k) * (n - 1);
-    ans /= 2;
-    println!("{}", ans.get());
+
+    let score = binary_search(1, l, |m| ok(&a, m, k + 1, l));
+    println!("{}", score)
+}
+
+fn ok(a: &[usize], score: usize, num_pieces: usize, len: usize) -> bool {
+    let mut left = 0;
+    let mut pieces = 0;
+    for cut in a {
+        if cut - left >= score {
+            left = *cut;
+            pieces += 1;
+        }
+    }
+    if len >= left + score {
+        pieces += 1;
+    }
+    pieces >= num_pieces
+}
+
+fn binary_search<F>(mut left: usize, mut right: usize, predicate: F) -> usize
+where
+    F: Fn(usize) -> bool,
+{
+    debug_assert!(predicate(left));
+    debug_assert!(!predicate(right));
+    while right - left > 1 {
+        let m = (left + right) / 2;
+        if predicate(m) {
+            left = m;
+        } else {
+            right = m;
+        }
+    }
+    left
 }
 
 mod mod998244353 {
-    #![allow(clippy::suspicious_arithmetic_impl)]
     use std::collections::VecDeque;
     use std::mem;
     use std::ops::*;
@@ -166,9 +197,9 @@ mod mod998244353 {
         type Output = Self;
 
         fn div(self, rhs: Self) -> Self {
-            self * Mod {
+            self.mul(Mod {
                 inner: moddiv(rhs.inner),
-            }
+            })
         }
     }
 
@@ -182,7 +213,7 @@ mod mod998244353 {
         type Output = Self;
 
         fn div(self, rhs: u128) -> Self {
-            self * Mod { inner: moddiv(rhs) }
+            self.mul(Mod { inner: moddiv(rhs) })
         }
     }
 
@@ -250,7 +281,7 @@ mod mod998244353 {
 }
 
 #[allow(unused)]
-fn print_vec<T: Display>(v: &Vec<T>) {
+fn print_vec<T: Display>(v: &[T]) {
     if v.is_empty() {
         return;
     }

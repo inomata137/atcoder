@@ -1,13 +1,13 @@
-use std::fmt::Debug;
-use std::collections::{HashSet, VecDeque};
-use proconio::*;
 use marker::Usize1;
+use proconio::*;
+use std::collections::{HashSet, VecDeque};
+use std::fmt::Debug;
 
 #[derive(Debug, PartialEq)]
 enum NodeType {
     InLoop,
     Branch,
-    Unknown
+    Unknown,
 }
 
 #[derive(Debug)]
@@ -15,7 +15,7 @@ struct Node {
     node_type: NodeType,
     from: HashSet<usize>,
     to: usize,
-    group: usize
+    group: usize,
 }
 
 impl Node {
@@ -24,14 +24,11 @@ impl Node {
             node_type: NodeType::Unknown,
             from: HashSet::new(),
             to: 0,
-            group: 0
+            group: 0,
         }
     }
     pub fn visited(&self) -> bool {
-        match self.node_type {
-            NodeType::Unknown => false,
-            _ => true
-        }
+        !matches!(self.node_type, NodeType::Unknown)
     }
 }
 
@@ -65,12 +62,12 @@ fn main() {
                     nodes[cur].node_type = NodeType::Branch;
                     nodes[cur].group = group_id;
                     cur = nodes[cur].to;
-                },
+                }
                 NodeType::Branch => {
                     assert_eq!(nodes[cur].group, group_id);
                     break;
-                },
-                _ => panic!()
+                }
+                _ => panic!(),
             }
         }
         // loop
@@ -83,15 +80,15 @@ fn main() {
                 NodeType::Branch => {
                     nodes[cur].node_type = NodeType::InLoop;
                     cur = nodes[cur].to;
-                },
+                }
                 NodeType::InLoop => break,
-                _ => panic!()
+                _ => panic!(),
             }
         }
         // backward
         while let Some(x) = queue.pop_back() {
             match nodes[x].node_type {
-                NodeType::InLoop => {},
+                NodeType::InLoop => {}
                 _ => {
                     nodes[x].node_type = NodeType::Branch;
                     nodes[x].group = group_id;
@@ -106,20 +103,14 @@ fn main() {
     let nodes = nodes;
     let mut loop_size = vec![0usize; group_id - 1];
     for i in 0..n {
-        match nodes[i].node_type {
-            NodeType::InLoop => {
-                loop_size[nodes[i].group - 1] += 1;
-            },
-            _ => {}
+        if nodes[i].node_type == NodeType::InLoop {
+            loop_size[nodes[i].group - 1] += 1;
         }
     }
     let mut ans = vec![0; n];
     for i in 0..n {
-        match nodes[i].node_type {
-            NodeType::InLoop => {
-                ans[i] = loop_size[nodes[i].group - 1]
-            },
-            _ => {}
+        if nodes[i].node_type == NodeType::InLoop {
+            ans[i] = loop_size[nodes[i].group - 1]
         }
     }
     for i in 0..n {
@@ -130,7 +121,7 @@ fn main() {
 
 #[allow(unused)]
 fn print_vec<T: Debug>(v: &Vec<T>) {
-    if v.len() == 0 {
+    if v.is_empty() {
         return;
     }
     println!("----------");

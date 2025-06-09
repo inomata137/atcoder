@@ -1,10 +1,10 @@
 // use cli_test_dir::*;
 // use std::env;
 
-// const KEY: &'static str = "CARGO_PKG_NAME";
+// const KEY: &str = "CARGO_PKG_NAME";
 
 // fn test(input: &str, answer: &str) {
-//     let bin_name = env::var(KEY).expect(&format!("No variable found: {KEY}"));
+//     let bin_name = env::var(KEY).unwrap_or_else(|_| panic!("No variable found: {KEY}"));
 //     let testdir = TestDir::new(&bin_name, "");
 //     let output = testdir
 //         .cmd()
