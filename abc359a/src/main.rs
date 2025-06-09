@@ -1,5 +1,5 @@
-use std::fmt::Display;
 use proconio::*;
+use std::fmt::Display;
 
 fn main() {
     input! {

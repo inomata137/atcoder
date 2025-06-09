@@ -1,6 +1,6 @@
-use std::fmt::Display;
 use marker::Usize1;
 use proconio::*;
+use std::fmt::Display;
 
 fn main() {
     input! {
