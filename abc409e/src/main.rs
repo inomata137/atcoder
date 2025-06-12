@@ -1,0 +1,362 @@
+#[allow(unused)]
+use mod998244353::Mod;
+use proconio::*;
+
+fn main() {
+    input! {
+        n: usize,
+        x: [isize; n],
+        edges: [(marker::Usize1, marker::Usize1, isize); n-1]
+    };
+    let mut node_to_edges = std::collections::BTreeMap::new();
+    for edge in edges.iter() {
+        node_to_edges
+            .entry(edge.0)
+            .or_insert_with(std::collections::BTreeSet::new)
+            .insert(Edge {
+                dst: edge.1,
+                weight: edge.2,
+            });
+        node_to_edges
+            .entry(edge.1)
+            .or_insert_with(std::collections::BTreeSet::new)
+            .insert(Edge {
+                dst: edge.0,
+                weight: edge.2,
+            });
+    }
+    let node_to_edges = node_to_edges;
+    let DfsResult { cost, .. } = dfs(1, None, &node_to_edges, &x);
+    println!("{cost}")
+}
+
+#[derive(Clone, PartialEq, Eq, PartialOrd, Ord)]
+struct Edge {
+    dst: usize,
+    weight: isize,
+}
+
+fn dfs(
+    root: usize,
+    parent: Option<usize>,
+    node_to_edges: &std::collections::BTreeMap<usize, std::collections::BTreeSet<Edge>>,
+    charges: &[isize],
+) -> DfsResult {
+    let outgoing_edges = node_to_edges.get(&root).unwrap().iter();
+    let outgoing_edges = match parent {
+        Some(parent) => outgoing_edges
+            .filter(|&e| e.dst != parent)
+            .collect::<Vec<_>>(),
+        None => outgoing_edges.collect::<Vec<_>>(),
+    };
+    if outgoing_edges.is_empty() {
+        return DfsResult {
+            cost: 0,
+            charge: charges[root],
+        };
+    }
+    let mut cost = 0;
+    let mut charge = charges[root];
+    for edge in outgoing_edges {
+        let res = dfs(edge.dst, Some(root), node_to_edges, charges);
+        cost += res.cost;
+        cost += edge.weight * res.charge.abs();
+        charge += res.charge;
+    }
+    DfsResult { cost, charge }
+}
+
+struct DfsResult {
+    cost: isize,
+    charge: isize,
+}
+
+#[allow(unused)]
+fn binary_search<F>(mut left: usize, mut right: usize, predicate: F) -> usize
+where
+    F: Fn(usize) -> bool,
+{
+    debug_assert!(predicate(left));
+    debug_assert!(!predicate(right));
+    while right - left > 1 {
+        let m = (left + right) / 2;
+        if predicate(m) {
+            left = m;
+        } else {
+            right = m;
+        }
+    }
+    left
+}
+
+#[cfg(test)]
+mod tests {
+    use super::binary_search;
+
+    #[test]
+    fn test_binary_search() {
+        let predicate = |x: usize| x < 5;
+        assert_eq!(binary_search(0, 10, predicate), 4);
+        assert_eq!(binary_search(0, 5, predicate), 4);
+        assert_eq!(binary_search(3, 10, predicate), 4);
+    }
+}
+
+mod mod998244353 {
+    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+
+    const MOD: usize = 998244353;
+
+    #[derive(Clone, Copy, Debug)]
+    pub struct Mod(usize);
+
+    impl From<usize> for Mod {
+        fn from(n: usize) -> Self {
+            Mod(n % MOD)
+        }
+    }
+
+    impl Neg for Mod {
+        type Output = Self;
+
+        fn neg(self) -> Self {
+            match self.0 {
+                0 => Mod(0),
+                _ => Mod(MOD - self.0),
+            }
+        }
+    }
+
+    impl Add for Mod {
+        type Output = Self;
+
+        fn add(self, rhs: Self) -> Self {
+            Mod((self.0 + rhs.0) % MOD)
+        }
+    }
+
+    impl AddAssign for Mod {
+        fn add_assign(&mut self, rhs: Self) {
+            self.0 = (self.0 + rhs.0) % MOD;
+        }
+    }
+
+    impl Add<usize> for Mod {
+        type Output = Self;
+
+        fn add(self, rhs: usize) -> Self {
+            Mod((self.0 + (rhs % MOD)) % MOD)
+        }
+    }
+
+    impl AddAssign<usize> for Mod {
+        fn add_assign(&mut self, rhs: usize) {
+            self.0 = (self.0 + (rhs % MOD)) % MOD;
+        }
+    }
+
+    impl Add<Mod> for usize {
+        type Output = Mod;
+
+        fn add(self, rhs: Mod) -> Mod {
+            Mod((self + rhs.0) % MOD)
+        }
+    }
+
+    impl Sub for Mod {
+        type Output = Self;
+
+        fn sub(self, rhs: Self) -> Self {
+            match self.0.cmp(&rhs.0) {
+                std::cmp::Ordering::Greater => Mod(self.0 - rhs.0),
+                std::cmp::Ordering::Equal => Mod(0),
+                std::cmp::Ordering::Less => Mod(self.0 + MOD - rhs.0),
+            }
+        }
+    }
+
+    impl SubAssign for Mod {
+        fn sub_assign(&mut self, rhs: Self) {
+            match self.0.cmp(&rhs.0) {
+                std::cmp::Ordering::Greater => self.0 -= rhs.0,
+                std::cmp::Ordering::Equal => self.0 = 0,
+                std::cmp::Ordering::Less => self.0 += MOD - rhs.0,
+            }
+        }
+    }
+
+    impl Sub<usize> for Mod {
+        type Output = Self;
+
+        fn sub(self, rhs: usize) -> Self {
+            let rhs = rhs % MOD;
+            match self.0.cmp(&rhs) {
+                std::cmp::Ordering::Greater => Mod(self.0 - rhs),
+                std::cmp::Ordering::Equal => Mod(0),
+                std::cmp::Ordering::Less => Mod(self.0 + MOD - rhs),
+            }
+        }
+    }
+
+    impl SubAssign<usize> for Mod {
+        fn sub_assign(&mut self, rhs: usize) {
+            let rhs = rhs % MOD;
+            match self.0.cmp(&rhs) {
+                std::cmp::Ordering::Greater => self.0 -= rhs,
+                std::cmp::Ordering::Equal => self.0 = 0,
+                std::cmp::Ordering::Less => self.0 += MOD - rhs,
+            }
+        }
+    }
+
+    impl Sub<Mod> for usize {
+        type Output = Mod;
+
+        fn sub(self, rhs: Mod) -> Mod {
+            let self_mod = self % MOD;
+            match self_mod.cmp(&rhs.0) {
+                std::cmp::Ordering::Greater => Mod(self_mod - rhs.0),
+                std::cmp::Ordering::Equal => Mod(0),
+                std::cmp::Ordering::Less => Mod(self_mod + MOD - rhs.0),
+            }
+        }
+    }
+
+    impl Mul for Mod {
+        type Output = Self;
+
+        fn mul(self, rhs: Self) -> Self {
+            Mod((self.0 * rhs.0) % MOD)
+        }
+    }
+
+    impl MulAssign for Mod {
+        fn mul_assign(&mut self, rhs: Self) {
+            self.0 = (self.0 * rhs.0) % MOD;
+        }
+    }
+
+    impl Mul<usize> for Mod {
+        type Output = Self;
+
+        fn mul(self, rhs: usize) -> Self {
+            Mod((self.0 * (rhs % MOD)) % MOD)
+        }
+    }
+
+    impl MulAssign<usize> for Mod {
+        fn mul_assign(&mut self, rhs: usize) {
+            self.0 = (self.0 * (rhs % MOD)) % MOD;
+        }
+    }
+
+    impl Mul<Mod> for usize {
+        type Output = Mod;
+
+        fn mul(self, rhs: Mod) -> Mod {
+            Mod(((self % MOD) * rhs.0) % MOD)
+        }
+    }
+
+    impl Div for Mod {
+        type Output = Self;
+
+        fn div(self, rhs: Self) -> Self {
+            Mod((self.0 * inverse(rhs.0)) % MOD)
+        }
+    }
+
+    impl DivAssign for Mod {
+        fn div_assign(&mut self, rhs: Self) {
+            self.0 = (self.0 * inverse(rhs.0)) % MOD;
+        }
+    }
+
+    impl Div<usize> for Mod {
+        type Output = Self;
+
+        fn div(self, rhs: usize) -> Self {
+            Mod((self.0 * inverse(rhs)) % MOD)
+        }
+    }
+
+    impl DivAssign<usize> for Mod {
+        fn div_assign(&mut self, rhs: usize) {
+            self.0 = (self.0 * inverse(rhs)) % MOD;
+        }
+    }
+
+    impl Div<Mod> for usize {
+        type Output = Mod;
+
+        fn div(self, rhs: Mod) -> Mod {
+            Mod(((self % MOD) * inverse(rhs.0)) % MOD)
+        }
+    }
+
+    impl Mod {
+        pub const fn new(n: usize) -> Self {
+            Mod(n % MOD)
+        }
+
+        pub const fn pow(&self, k: usize) -> Self {
+            Mod(modpow(self.0, k))
+        }
+
+        pub const fn inv(&self) -> Self {
+            Mod(inverse(self.0))
+        }
+
+        pub const fn inner(&self) -> &usize {
+            &self.0
+        }
+    }
+
+    /// Computes the modular inverse of `a` under modulo `MOD`.
+    ///
+    /// It uses Fermat's Little Theorem.
+    ///
+    /// If `p` is prime and GCD(a, p) == 1, then a^(p-1) ≡ 1 (mod p).
+    /// Thus, a^(p-2) ≡ a^(-1) (mod p).
+    const fn inverse(a: usize) -> usize {
+        let a = a % MOD;
+        if a == 0 {
+            panic!("Cannot compute inverse of zero");
+        }
+        modpow(a, MOD - 2)
+    }
+
+    const fn modpow(mut base: usize, mut pow: usize) -> usize {
+        base %= MOD;
+        let mut ans = 1;
+        while pow > 0 {
+            if pow & 1 == 1 {
+                ans = (ans * base) % MOD;
+            }
+            base = (base * base) % MOD;
+            pow >>= 1;
+        }
+        ans
+    }
+
+    #[test]
+    fn test_inverse() {
+        assert_eq!(inverse(1), 1);
+        assert_eq!(inverse(2), 499122177);
+        assert_eq!(inverse(3), 332748118);
+        assert_eq!(inverse(4), 748683265);
+        assert_eq!(inverse(5), 598946612);
+        assert_eq!(inverse(6), 166374059);
+    }
+}
+
+#[allow(unused)]
+fn print_vec<T: std::fmt::Display>(v: &[T]) {
+    if !v.is_empty() {
+        print!("{}", v[0]);
+        for e in &v[1..] {
+            print!(" {}", e);
+        }
+    }
+    println!();
+}
