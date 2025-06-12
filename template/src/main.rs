@@ -1,13 +1,11 @@
 #[allow(unused)]
 use mod998244353::Mod;
-use proconio::*;
+use proconio::marker::*;
 
 fn main() {
     input! {
         a: usize
     };
-    let msg = if a % 2 == 0 { "Even" } else { "Odd" };
-    println!("{msg}");
 }
 
 #[allow(unused)]
@@ -43,6 +41,7 @@ mod tests {
 
 mod mod998244353 {
     use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+    use std::cmp::Ordering::{Equal, Greater, Less};
 
     const MOD: usize = 998244353;
 
@@ -107,9 +106,9 @@ mod mod998244353 {
 
         fn sub(self, rhs: Self) -> Self {
             match self.0.cmp(&rhs.0) {
-                std::cmp::Ordering::Greater => Mod(self.0 - rhs.0),
-                std::cmp::Ordering::Equal => Mod(0),
-                std::cmp::Ordering::Less => Mod(self.0 + MOD - rhs.0),
+                Greater => Mod(self.0 - rhs.0),
+                Equal => Mod(0),
+                Less => Mod(self.0 + MOD - rhs.0),
             }
         }
     }
@@ -117,9 +116,9 @@ mod mod998244353 {
     impl SubAssign for Mod {
         fn sub_assign(&mut self, rhs: Self) {
             match self.0.cmp(&rhs.0) {
-                std::cmp::Ordering::Greater => self.0 -= rhs.0,
-                std::cmp::Ordering::Equal => self.0 = 0,
-                std::cmp::Ordering::Less => self.0 += MOD - rhs.0,
+                Greater => self.0 -= rhs.0,
+                Equal => self.0 = 0,
+                Less => self.0 += MOD - rhs.0,
             }
         }
     }
@@ -130,9 +129,9 @@ mod mod998244353 {
         fn sub(self, rhs: usize) -> Self {
             let rhs = rhs % MOD;
             match self.0.cmp(&rhs) {
-                std::cmp::Ordering::Greater => Mod(self.0 - rhs),
-                std::cmp::Ordering::Equal => Mod(0),
-                std::cmp::Ordering::Less => Mod(self.0 + MOD - rhs),
+                Greater => Mod(self.0 - rhs),
+                Equal => Mod(0),
+                Less => Mod(self.0 + MOD - rhs),
             }
         }
     }
@@ -141,9 +140,9 @@ mod mod998244353 {
         fn sub_assign(&mut self, rhs: usize) {
             let rhs = rhs % MOD;
             match self.0.cmp(&rhs) {
-                std::cmp::Ordering::Greater => self.0 -= rhs,
-                std::cmp::Ordering::Equal => self.0 = 0,
-                std::cmp::Ordering::Less => self.0 += MOD - rhs,
+                Greater => self.0 -= rhs,
+                Equal => self.0 = 0,
+                Less => self.0 += MOD - rhs,
             }
         }
     }
@@ -154,9 +153,9 @@ mod mod998244353 {
         fn sub(self, rhs: Mod) -> Mod {
             let self_mod = self % MOD;
             match self_mod.cmp(&rhs.0) {
-                std::cmp::Ordering::Greater => Mod(self_mod - rhs.0),
-                std::cmp::Ordering::Equal => Mod(0),
-                std::cmp::Ordering::Less => Mod(self_mod + MOD - rhs.0),
+                Greater => Mod(self_mod - rhs.0),
+                Equal => Mod(0),
+                Less => Mod(self_mod + MOD - rhs.0),
             }
         }
     }

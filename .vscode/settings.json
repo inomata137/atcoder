@@ -1,4 +1,10 @@
 {
     "editor.tabSize": 4,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "files.associations": {
+        "*.rs": "rust"
+    },
+    "github.copilot.enable": {
+        "rust": false
+    }
 }
