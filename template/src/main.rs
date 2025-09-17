@@ -1,5 +1,6 @@
 #[allow(unused)]
 use mod998244353::Mod;
+#[allow(unused)]
 use proconio::{input, marker::*};
 
 fn main() {
@@ -8,19 +9,20 @@ fn main() {
     };
 }
 
+/// Returns the largest usize that satisfies the predicate.
 #[allow(unused)]
-fn binary_search<F>(mut left: usize, mut right: usize, predicate: F) -> usize
-where
-    F: Fn(usize) -> bool,
-{
+fn binary_search(mut left: usize, right: usize, predicate: impl Fn(usize) -> bool) -> usize {
     debug_assert!(predicate(left));
     debug_assert!(!predicate(right));
-    while right - left > 1 {
-        let m = (left + right) / 2;
-        if predicate(m) {
-            left = m;
+
+    let mut size = right - left;
+    while size > 1 {
+        let mid = left + size / 2;
+        if predicate(mid) {
+            left = mid;
+            size -= size / 2;
         } else {
-            right = m;
+            size /= 2;
         }
     }
     left
@@ -40,8 +42,8 @@ mod tests {
 }
 
 mod mod998244353 {
-    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
     use std::cmp::Ordering::{Equal, Greater, Less};
+    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
     const MOD: usize = 998244353;
 
