@@ -6,20 +6,24 @@ use proconio::{input, marker::*};
 fn main() {
     input! {
         n: usize,
-        s: usize,
-        t: [usize; n],
+        m: usize,
+        a: [(Usize1, Usize1); m]
     };
-    if t[0] > s {
-        println!("No");
-        return;
-    }
-    for i in 1..n {
-        if t[i] > t[i - 1] + s {
-            println!("No");
-            return;
+    let mut count = vec![0isize; n];
+    for (l, r) in a {
+        count[l] += 1;
+        let r = r + 1;
+        if r < n {
+            count[r] -= 1;
         }
     }
-    println!("Yes");
+
+    let mut ans = count[0];
+    for i in 1..n {
+        count[i] += count[i - 1];
+        ans = ans.min(count[i]);
+    }
+    println!("{ans}")
 }
 
 #[allow(unused)]

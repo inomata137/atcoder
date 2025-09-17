@@ -6,20 +6,11 @@ use proconio::{input, marker::*};
 fn main() {
     input! {
         n: usize,
-        s: usize,
-        t: [usize; n],
+        a: [usize; n]
     };
-    if t[0] > s {
-        println!("No");
-        return;
-    }
-    for i in 1..n {
-        if t[i] > t[i - 1] + s {
-            println!("No");
-            return;
-        }
-    }
-    println!("Yes");
+    let a = std::collections::BTreeSet::from_iter(a.into_iter());
+    println!("{}", a.len());
+    print_vec(&a.into_iter().collect::<Vec<_>>())
 }
 
 #[allow(unused)]

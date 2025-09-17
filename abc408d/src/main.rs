@@ -5,21 +5,47 @@ use proconio::{input, marker::*};
 
 fn main() {
     input! {
-        n: usize,
-        s: usize,
-        t: [usize; n],
+        t: usize,
+        c: [(usize, Chars); t]
     };
-    if t[0] > s {
-        println!("No");
-        return;
+    c
+        .iter()
+        .for_each(|(l, c)| solve(c, *l))
+}
+
+fn solve(chars: &[char], len: usize) {
+    let chars = &chars[..len];
+    let mut ends_with_one;
+    let mut all_zero;
+    let mut other;
+
+    if chars[0] == '0' {
+        ends_with_one = 1;
+        all_zero = 0;
+        other = 0;
+    } else {
+        ends_with_one = 0;
+        all_zero = 1;
+        other = 1;
     }
-    for i in 1..n {
-        if t[i] > t[i - 1] + s {
-            println!("No");
-            return;
+
+    for c in &chars[1..] {
+        if c == &'0' {
+            (ends_with_one, all_zero, other) = (
+                ends_with_one.min(all_zero) + 1,
+                all_zero,
+                ends_with_one.min(other)
+            )
+        } else {
+            (ends_with_one, all_zero, other) = (
+                ends_with_one.min(all_zero),
+                all_zero + 1,
+                ends_with_one.min(other) + 1
+            )
         }
     }
-    println!("Yes");
+
+    println!("{}", ends_with_one.min(all_zero).min(other))
 }
 
 #[allow(unused)]

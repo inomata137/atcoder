@@ -5,6 +5,7 @@
         "*.rs": "rust"
     },
     "github.copilot.enable": {
-        "rust": false
+        "rust": false,
+        "python": false
     }
 }

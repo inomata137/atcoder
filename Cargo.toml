@@ -27,5 +27,8 @@ members = [
     "typ90_yokan",
     "typ90_subseq",
     "abc408a",
+    "abc408b",
+    "abc408c",
+    "abc408d",
     # MEMBER_LAST_MARKER
 ]
