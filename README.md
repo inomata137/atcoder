@@ -1,17 +1,8 @@
 ## Rust template for AtCoder
 ### Usage
-#### 1. Create a workspace
 ```sh
-$ cargo generate --path template --name abc000
-```
-
-#### 2. Edit Cargo.toml
-```diff Cargo.toml
-[workspace]
-resolver = "2"
-members = [
-+   "abc000",
-]
+chmod +x ./new.sh
+./new.sh abc000
 ```
 
 #### 3. Write your code
