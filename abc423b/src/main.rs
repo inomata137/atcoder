@@ -3,8 +3,25 @@ use proconio::{input, marker::*};
 
 fn main() {
     input! {
-        a: usize
+        n: usize,
+        l: [u8; n]
     };
+    let mut ans = n - 1;
+    for lock_state in &l {
+        if *lock_state == 0 && ans > 0 {
+            ans -= 1;
+        } else {
+            break;
+        }
+    }
+    for lock_state in l.iter().rev() {
+        if *lock_state == 0 && ans > 0 {
+            ans -= 1;
+        } else {
+            break;
+        }
+    }
+    println!("{ans}")
 }
 
 /// Returns the largest usize that satisfies the predicate.

@@ -3,8 +3,10 @@ use proconio::{input, marker::*};
 
 fn main() {
     input! {
-        a: usize
+        x: usize,
+        c: usize
     };
+    println!("{}", 1000 * (x / (1000 + c)))
 }
 
 /// Returns the largest usize that satisfies the predicate.

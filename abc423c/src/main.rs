@@ -1,10 +1,36 @@
 #[allow(unused)]
 use proconio::{input, marker::*};
 
+const OPEN: u8 = 0;
+// const CLOSED: u8 = 1;
+
 fn main() {
     input! {
-        a: usize
+        n: usize,
+        r: usize,
+        l: [u8; n]
     };
+    let mut ans = 0;
+
+    let mut open = false;
+    for lock_state in &l[0..r] {
+        if *lock_state == OPEN {
+            ans += 1;
+            open = true;
+        } else if open {
+            ans += 2;
+        }
+    }
+    open = false;
+    for lock_state in l[r..n].iter().rev() {
+        if *lock_state == OPEN {
+            ans += 1;
+            open = true;
+        } else if open {
+            ans += 2;
+        }
+    }
+    println!("{ans}")
 }
 
 /// Returns the largest usize that satisfies the predicate.

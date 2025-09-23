@@ -54,8 +54,8 @@ mod tests {
 }
 
 mod mod998244353 {
-    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
     use std::cmp::Ordering::{Equal, Greater, Less};
+    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
     const MOD: usize = 998244353;
 

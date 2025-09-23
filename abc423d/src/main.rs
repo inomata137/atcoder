@@ -3,8 +3,28 @@ use proconio::{input, marker::*};
 
 fn main() {
     input! {
-        a: usize
+        n: usize, // 団体数
+        k: usize, // キャパシティ
+        visit: [(usize, usize, usize); n],
     };
+
+    let mut empty = k;
+    let mut time = 0;
+
+    let mut pool = std::collections::BTreeMap::<usize, usize>::new();
+
+    // (来訪時刻, 滞在時間, 人数)
+    for (arrival, stay, num) in visit {
+        while empty < num {
+            let (leave_time, leave_num) = pool.pop_first().unwrap();
+            empty += leave_num;
+            time = time.max(leave_time);
+        }
+        time = time.max(arrival);
+        empty -= num;
+        println!("{time}");
+        *pool.entry(time + stay).or_default() += num;
+    }
 }
 
 /// Returns the largest usize that satisfies the predicate.

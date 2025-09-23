@@ -8,9 +8,7 @@ fn main() {
         t: usize,
         c: [(usize, Chars); t]
     };
-    c
-        .iter()
-        .for_each(|(l, c)| solve(c, *l))
+    c.iter().for_each(|(l, c)| solve(c, *l))
 }
 
 fn solve(chars: &[char], len: usize) {
@@ -34,13 +32,13 @@ fn solve(chars: &[char], len: usize) {
             (ends_with_one, all_zero, other) = (
                 ends_with_one.min(all_zero) + 1,
                 all_zero,
-                ends_with_one.min(other)
+                ends_with_one.min(other),
             )
         } else {
             (ends_with_one, all_zero, other) = (
                 ends_with_one.min(all_zero),
                 all_zero + 1,
-                ends_with_one.min(other) + 1
+                ends_with_one.min(other) + 1,
             )
         }
     }
@@ -80,8 +78,8 @@ mod tests {
 }
 
 mod mod998244353 {
-    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
     use std::cmp::Ordering::{Equal, Greater, Less};
+    use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
     const MOD: usize = 998244353;
 
