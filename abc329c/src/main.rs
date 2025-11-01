@@ -29,7 +29,7 @@ fn char2idx(c: char) -> usize {
 }
 
 #[allow(unused)]
-fn print_vec<T: Display>(v: &Vec<T>) {
+fn print_vec<T: Display>(v: &[T]) {
     if v.is_empty() {
         return;
     }

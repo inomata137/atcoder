@@ -14,16 +14,12 @@ fn main() {
     } else {
         (sx - 1, sx)
     };
-    let xmin = if start_left > ans_y {
-        start_left - ans_y
-    } else {
-        0
-    };
+    let xmin = start_left.saturating_sub(ans_y);
     let xmax = start_right + ans_y;
     let ans_x = if tx < xmin {
-        (xmin - tx + 1) / 2
+        (xmin - tx).div_ceil(2)
     } else if tx > xmax {
-        (tx - xmax + 1) / 2
+        (tx - xmax).div_ceil(2)
     } else {
         0
     };
@@ -31,7 +27,7 @@ fn main() {
 }
 
 #[allow(unused)]
-fn print_vec<T: Display>(v: &Vec<T>) {
+fn print_vec<T: Display>(v: &[T]) {
     if v.is_empty() {
         return;
     }

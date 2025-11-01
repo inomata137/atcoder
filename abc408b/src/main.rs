@@ -8,7 +8,7 @@ fn main() {
         n: usize,
         a: [usize; n]
     };
-    let a = std::collections::BTreeSet::from_iter(a.into_iter());
+    let a = std::collections::BTreeSet::from_iter(a);
     println!("{}", a.len());
     print_vec(&a.into_iter().collect::<Vec<_>>())
 }

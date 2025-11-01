@@ -35,6 +35,17 @@ fn binary_search(mut left: usize, right: usize, predicate: impl Fn(usize) -> boo
     left
 }
 
+#[allow(unused)]
+fn print_vec<T: std::fmt::Display>(v: &[T]) {
+    if !v.is_empty() {
+        print!("{}", v[0]);
+        for e in &v[1..] {
+            print!(" {}", e);
+        }
+    }
+    println!();
+}
+
 #[cfg(test)]
 mod tests {
     use super::binary_search;
@@ -46,15 +57,4 @@ mod tests {
         assert_eq!(binary_search(0, 5, predicate), 4);
         assert_eq!(binary_search(3, 10, predicate), 4);
     }
-}
-
-#[allow(unused)]
-fn print_vec<T: std::fmt::Display>(v: &[T]) {
-    if !v.is_empty() {
-        print!("{}", v[0]);
-        for e in &v[1..] {
-            print!(" {}", e);
-        }
-    }
-    println!();
 }

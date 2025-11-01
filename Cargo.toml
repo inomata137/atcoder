@@ -25,7 +25,6 @@ members = [
     "abc409d",
     "abc409e",
     "typ90_yokan",
-    "typ90_subseq",
     "abc408a",
     "abc408b",
     "abc408c",
@@ -43,6 +42,14 @@ members = [
     "abc426a",
     "abc426b",
     "abc426c",
+    "abc427b",
+    "abc427c",
+    "abc427d",
+    "abc428b",
+    "abc428c",
+    "typ90_006",
+    "abc430b",
+    "abc430c",
     # MEMBER_LAST_MARKER
 ]
 
