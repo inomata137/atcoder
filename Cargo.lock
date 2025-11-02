@@ -7,7 +7,7 @@ name = "abc329b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -15,7 +15,7 @@ name = "abc329c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -23,7 +23,7 @@ name = "abc329d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -31,7 +31,7 @@ name = "abc330a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -39,7 +39,7 @@ name = "abc330b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -47,7 +47,7 @@ name = "abc330c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -55,7 +55,7 @@ name = "abc330d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -63,7 +63,7 @@ name = "abc333c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -71,7 +71,7 @@ name = "abc357a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -79,7 +79,7 @@ name = "abc357b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -87,7 +87,7 @@ name = "abc357c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -95,7 +95,7 @@ name = "abc357d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -103,7 +103,7 @@ name = "abc357e"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -111,7 +111,7 @@ name = "abc359a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -119,7 +119,7 @@ name = "abc359b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -127,7 +127,7 @@ name = "abc359c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -135,7 +135,7 @@ name = "abc359e"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -143,7 +143,7 @@ name = "abc360e"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -151,7 +151,7 @@ name = "abc408a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -159,7 +159,7 @@ name = "abc408b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -167,7 +167,7 @@ name = "abc408c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -175,7 +175,7 @@ name = "abc408d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -183,7 +183,7 @@ name = "abc409a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -191,7 +191,7 @@ name = "abc409b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -199,7 +199,7 @@ name = "abc409c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -207,7 +207,7 @@ name = "abc409d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -215,7 +215,7 @@ name = "abc409e"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
 
 [[package]]
@@ -223,7 +223,7 @@ name = "abc423a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -231,7 +231,7 @@ name = "abc423b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -239,7 +239,7 @@ name = "abc423c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -247,7 +247,7 @@ name = "abc423d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -255,7 +255,7 @@ name = "abc423e"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -263,7 +263,7 @@ name = "abc424c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -271,7 +271,7 @@ name = "abc425a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -279,7 +279,7 @@ name = "abc425b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -287,7 +287,7 @@ name = "abc425c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -295,7 +295,7 @@ name = "abc425d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -303,7 +303,7 @@ name = "abc426a"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -311,7 +311,7 @@ name = "abc426b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -319,7 +319,7 @@ name = "abc426c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -327,7 +327,7 @@ name = "abc427b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -335,7 +335,7 @@ name = "abc427c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -343,7 +343,7 @@ name = "abc427d"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -351,7 +351,7 @@ name = "abc428b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -359,7 +359,7 @@ name = "abc428c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -367,7 +367,7 @@ name = "abc430b"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -375,7 +375,15 @@ name = "abc430c"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc430d"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -391,11 +399,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0eb404616795079e2390e7115acf0ada24e9332e8476de2aada7bacb9992dc9e"
 
 [[package]]
+name = "proconio"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c10091de86d0dc939b37a115d74597cbe83af470032a1729d50c98ccee043cb0"
+
+[[package]]
 name = "typ90_006"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.5.0",
 ]
 
 [[package]]
@@ -403,5 +417,5 @@ name = "typ90_yokan"
 version = "0.1.0"
 dependencies = [
  "cli_test_dir",
- "proconio",
+ "proconio 0.4.5",
 ]
