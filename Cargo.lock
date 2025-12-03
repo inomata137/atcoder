@@ -411,6 +411,63 @@ dependencies = [
 ]
 
 [[package]]
+name = "abc432b"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc432c"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc433a"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc433b"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc433c"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc433d"
+version = "0.1.0"
+dependencies = [
+ "ac-library-rs",
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
+name = "abc433e"
+version = "0.1.0"
+dependencies = [
+ "cli_test_dir",
+ "proconio 0.5.0",
+]
+
+[[package]]
 name = "ac-library-rs"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
